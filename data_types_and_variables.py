@@ -17,7 +17,7 @@ print (student_can_be_enrolled)
 premium_member = True
 buy_more_than_2 = True
 offer_valid = True
-offer_applied = premium_member or buy_more_than_2 and offer_valid
+offer_applied = (premium_member or buy_more_than_2) and offer_valid
 print (offer_applied)
 
 # 5. Continue working in your data_types_and_variables.py file. Use the following code to follow the instructions below:
@@ -36,7 +36,7 @@ password = 'notastrongpassword'
 p_length = len(password) > 5
 print(p_length)
 
-u_length = len(username) > 20
+u_length = len(username) < 20
 print(u_length)
 
 match = password != username
@@ -44,6 +44,14 @@ print(match)
 
 start_or_end_with_whitespace = username[0] == " " or username[-1] == " "
 print(start_or_end_with_whitespace)
+start_or_end_with_whitespace = username == username.strip()
 
 start_or_end_with_whitespace_1 = password[0] == " " or password[-1] == " "
 print(start_or_end_with_whitespace_1)
+start_or_end_with_whitespace_1 = password == password.strip()
+
+username_is_good = u_length and match and start_or_end_with_whitespace
+password_is_good = p_length and match and start_or_end_with_whitespace_1
+
+all_good = username_is_good and password_is_good
+print(all_good)
