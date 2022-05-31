@@ -9,6 +9,10 @@ else:
 
 # b. prompt the user for a day of the week, print out whether the day is a weekday or a weekend
 today = input('Today is:')
+while today.lower() not in ['monday','tuesday','wednesday','thursday','friday','saturday','sunday']:
+    print('invalid input')
+    today = input('Today is:')
+
 if today == ('monday','tuesday','wednesday','thursday','friday'):
     print('weekday')
 else:
@@ -70,6 +74,11 @@ for i in range(1,11):
     print(number + 'x' + str(i) + '=' + str((int(number) * i)))
     i += 1
 
+num = input('enter a number:')
+num = int(num)
+for i in range(1,11):
+    print (f'{num} * {i} = {num * i}')
+
 # ii. Create a for loop that uses print to create the output shown below.
 # 1
 # 22
@@ -81,22 +90,36 @@ for i in range(1,11):
 # 88888888
 # 999999999
 for number in range(1,2):
-    for x in (1,11,111,1111,11111,111111,1111111,11111111,11111111):
+    for x in (1,11,111,1111,11111,111111,1111111,11111111,111111111):
         y = number * x
         print(y)
         number += 1
 
+for i in range(1,10):
+    print(str(i) * i)
+
 # break and continue
 # i.Prompt the user for an odd number between 1 and 50. Use a loop and a break statement to continue prompting the user if they enter invalid input. (Hint: use the isdigit method on strings to determine this). Use a loop and the continue statement to output all the odd numbers between 1 and 50, except for the number the user entered.
-number = input('Please input a odd number between 1 to 50:')
-print('Number to skip is:' + str(number))
+num = input('Please input a odd number between 1 to 50:')
+while True:
+    if (num.isdigit() ==  False
+        or int(num) > 50
+        or int(num) < 1
+        or int(num) % 2 == 0):
+        print('invalid input')
+        num = input('Please input a odd number between 1 to 50:')
+    else:
+        break
 
+num = int(num)
+print('Number to skip is:' ,num)
 for n in range(1,51):
     if n % 2 == 0:
         continue
-    print(f'Here is an odd number: {n}')
-    if n == number:
-        print('Yikes! Skipping number:' + str(number))
+    elif n == num:
+        print('Yikes! Skipping number:', n)
+    else:
+        print(f'Here is an odd number:', n)
 
 
 # d. Prompt the user to enter a positive number and write a loop that counts from 0 to that number.
@@ -106,12 +129,38 @@ while i <= int(n):
     print(i)
     i += 1
 
+# review:
+n = input('Enter a positive number:')
+while True:
+    if (n.isdigit() == False
+    or int(n) < 0):
+        print('Invalid input')
+        n = input('Enter a positive number:')
+    else:
+        break
+
+for i in range(0, int(n) + 1):
+    print(i)
+
 # e. Write a program that prompts the user for a positive integer. Next write a loop that prints out the numbers from the number the user entered down to 1.
 n = input('Enter a positive integer:')
 i = int(n)
 while i >= 1:
     print(i)
     i -= 1
+
+# review:
+n = input('Enter a positive number:')
+while True:
+    if (n.isdigit() == False
+    or int(n) < 0):
+        print('Invalid input')
+        n = input('Enter a positive number:')
+    else:
+        break
+
+for i in reversed(range(0, int(n) + 1)):
+    print(i)
 
 # 3. Fizzbuzz
 # Write a program that prints the numbers from 1 to 100.
@@ -140,18 +189,22 @@ def main():
     start = 1
     end = int(input('What number would you like to go up to?:'))
     print('Here is your table!')
-    print('number','squared','cubed')
+    print('number | squared | cubed')
+    print('-------| ------- | ------|')
 
     for i in range(1,end+1):
-        print (i,i**2,i**3)
+        print (f'{i:^6} | {i**2:^7} | {i**3:^5}')
         i += 1
     
     while True:
         ask = input('Would you like to continue? yes/no')
         if ask == 'yes':
             end = int(input('What number would you like to go up to?:'))
+            print('Here is your table!')
+            print('number | squared | cubed')
+            print('-------| ------- | ------|')
             for i in range(1,end+1):
-                print (i,i**2,i**3)
+                print (f'{i:^6} | {i**2:^7} | {i**3:^5}')
                 i += 1
         if ask == 'no':
             print('Bye!')
