@@ -16,3 +16,8 @@ print((len(list(itertools.combinations('abc',2)))))
 
 # How many different permutations are there of 2 letters from "abcd"?
 print((len(list(itertools.permutations('abc',2)))))
+
+
+import json
+json.load(open('profiles.json'))
+
